@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{%block title %}Admissions{% endblock title %}
+
+
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f6f9;
+}
+
+.container {
+  background-color: #f9f6f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.logo {
+  margin-top: 10px;
+}
+
+.logo img {
+  width: 300px;
+  height: 200px;
+  border-radius: 10%;
+  margin-right: 280px;
+}
+
+.left-column {
+  float: left;
+  width: 45%;
+  padding-right: 20px;
+  background-color: #f9f6f9;
+  border-radius: 10px;
+}
+
+.right-column {
+  margin-left: 50%;
+  margin-top: 30px;
+  background-color: #E27D60;
+  padding: 30px;
+  border-radius: 20px;
+  color: #ffffff;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #652b7c;
+}
+
+.university-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #4b0082;
+}
+
+.university-title a {
+  color: #652b7c;
+  text-decoration: none;
+}
+
+.college-title {
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #652b7c;
+}
+
+.college-title a {
+  color: #4b0082;
+  text-decoration: none;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.container label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.container input[type=text],
+.container input[type=password],
+.container textarea,
+.container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.container input[type=text]:focus,
+.container input[type=password]:focus,
+.container textarea:focus {
+  outline: none;
+  background-color: #f9f6f9;
+}
+
+.container select {
+  background-color: #fff;
+}
+
+.container button[type=submit] {
+  background-color: #E27D60;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.container button[type=submit]:hover {
+  background-color: #800080;
+}
+
+.right-column h2 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.right-column p {
+  margin-bottom: 20px;
+}
+
+.right-column ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.right-column ul li {
+  margin-bottom: 10px;
+}
+
+.right-column ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid #4b0082;
+  margin: 30px 0;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.du.ac.in/"><img src="/static/dulogo2.png" alt="Logo"></a>
+    </div>
+    <div>
+      <h2 class="title">Admissions Open 2023-24</h2>
+      <div class="university-title">
+        <a href="https://www.du.ac.in/">Delhi University</a>
+      </div>
+      <div class="college-title">
+        <a href="https://www.deendayalcollege.edu.in/">Deen Dayal Upadhyaya College</a>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="left-column">
+    <form method='post' action='/mainnet/'>
+      {% csrf_token %}
+      <label>First name:</label>
+      <br>
+      <input type="text" name="firstname" placeholder="Enter First Name" required>
+      <br>
+      <label>Middle name:</label>
+      <br>
+      <input type="text" name="middlename" placeholder="Enter Middle Name" required>
+      <br>
+      <label>Last name:</label>
+      <br>
+      <input type="text" name="lastname" placeholder="Enter Last Name" required>
+      <br>
+      <label>Course:</label>
+      <br>
+      <select name='course'>
+        <option value="Course">Select Course</option>
+        <option value="BOTANY">BOTANY (BOT)</option>
+        <option value="ZOOLOGY">ZOOLOGY (ZOO)</option>
+        <option value="COMPUTER SCI">COMPUTER SCI (COMP SCI)</option>
+        <option value="PHYSICS">PHYSICS (PHY)</option>
+        <option value="BA PROGRAM">BA PROGRAM (BA P)</option>
+        <option value="BA ENGLISH">BA ENGLISH (BA Eng)</option>
+        <option value="B.COM">B.COM (B.COM)</option>
+        <option value="ELECTRONICS">ELECTRONICS (ELE)</option>
+        <option value="MATHEMATICS">MATHEMATICS (MATH)</option>
+        <option value="CHEMISTRY">CHEMISTRY (CHEM)</option>
+        <option value="BMS">BMS (BMS)</option>
+      </select>
+      <br>
+      <div class="gender-input">
+        <label>Gender:</label>
+        <br>
+        <select name="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <br>
+      <label>Phone:</label>
+      <br>
+      <input type="text" name="countrycode" placeholder="Country Code" value="+91" size="2">
+      <input type="text" name="phone" placeholder="Phone" size="10" required>
+      <br>
+      <label>Current Address:</label>
+      <br>
+      <textarea cols="30" rows="3" name="current_address" placeholder="Current Address" required></textarea>
+      <br>
+      <label>Email:</label>
+      <br>
+      <input type="email" name="email" placeholder="Enter Email" required>
+      <br>
+      <br>
+      <label>Password:</label>
+      <br>
+      <input type="password" name="psw" placeholder="Enter Password" required>
+      <br>
+      <label>Re-type Password:</label>
+      <br>
+      <input type="password" name="psw-repeat" placeholder="Re-type Password" required>
+      <br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <div class="right-column">
+    <h2>Courses Offered</h2>
+    <p>Wide range of courses offered at our college:</p>
+    <ul>
+      <li><a href="https://www.du.ac.in/uploads/Revi_syll_19082019/19082019_B.%20Sc.%20(Hons.)%20Zoology.pdf">ZOOLOGY (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/Revi_syll_19082019/19082019_B.Sc.(H)%20Botany.pdf">BOTANY (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/du/uploads/Course/UG/2021/Political-Science.pdf">B.A. PROGRAM</a></li>
+      <li><a href="https://www.du.ac.in/uploads/new-web/syllabi/06012022_DRAFT%20syllabus%20-%20Semester%206%20BA%20English%20Syllabus.pdf">B.A. ENGLISH (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/RevisedSyllabi1/Annexure-170%20(B.A.%20(Hons.)%20Economics).pdf">B.COM (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/du/uploads/Course/UG/2021/Philosophy.pdf">COMPUTER SCI (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/RevisedSyllabi1/24072019_BSc_hons_physics_2019July15.pdf">PHYSICS (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/RevisedSyllabi1/Annexure-124.%20(B.Sc(H%20)Electronics).pdf">ELECTRONICS (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/RevisedSyllabi1/Annexure-74.%20(B.Sc.(Hons)Maths%20(REVISED).pdf">MATHEMATICS (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/Revi_syll_19082019/19082019_B.%20Sc%20Hons%20Chemistry.pdf">CHEMISTRY (Hons)</a></li>
+      <li><a href="https://www.du.ac.in/uploads/RevisedSyllabi1/Annexure-115.%20(Bachelor%20in%20Management%20Studies%20-%20BMS).pdf">BMS (Hons)</a></li>
+    </ul>
+    <hr>
+    <h2>Contact Information</h2>
+    <p>For more information, please contact:</p>
+    <ul>
+      <li><a href="tel:+919876543210">Phone: +91 1234567890</a></li>
+      <li><a href="mailto:admissions@example.com">Email: admissions@example.com</a></li>
+      <li><a href="https://www.example.com">Website: www.example.com</a></li>
+
+    </ul>
+    <hr>
+    <p>Follow us on social media:</p>
+    <ul>
+      <li><a href="https://www.facebook.com/example">Facebook</a></li>
+      <li><a href="https://twitter.com/example">Twitter</a></li>
+      <li><a href="https://www.instagram.com/example">Instagram</a></li>
+      <li><a href="https://www.linkedin.com/in/example">LinkedIn</a></li>
+    </ul>
+    </div>
+    <div style="clear: both;"></div>
+    </div>
+  </div>
+
+</body>
+</html>
+</body>
+</html>
+
+
+{% endblock body %}

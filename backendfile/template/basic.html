@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{%block title %}Chatbot{% endblock title %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .chatbox {
+      width: 400px;
+      height: 500px;
+      border: 1px solid #ccc;
+      background-color: #f8f8f8;
+      overflow-y: scroll;
+      padding: 10px;
+      margin: 0 auto;
+    }
+    
+    .message {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      max-width: 75%;
+    }
+    
+    .user-message {
+      background-color: #ddf7ff;
+      margin-left: auto;
+    }
+    
+    .bot-message {
+      background-color: #f0f0f0;
+      margin-right: auto;
+      text-align: right;
+    }
+    
+    .user-input {
+      width: 100%;
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 14px;
+      border: none;
+      background-color: #f0f0f0;
+      color: #333;
+    }
+    
+    .send-button {
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 14px;
+      border: none;
+      background-color: #ff4444;
+      color: #fff;
+      cursor: pointer;
+    }
+    
+    .send-button:hover {
+      background-color: #cc0000;
+    }
+  </style>
+  
+  <script>
+    function sendMessage() {
+      var userInput = document.getElementById("userInput");
+      var chatbox = document.getElementById("chatbox");
+      
+      // Get user input and display as user message
+      var userMessage = userInput.value;
+      userInput.value = "";
+      var userMessageElement = document.createElement("div");
+      userMessageElement.className = "message user-message";
+      userMessageElement.textContent = userMessage;
+      chatbox.appendChild(userMessageElement);
+      
+      // Simulate bot response
+      var botMessageElement = document.createElement("div");
+      botMessageElement.className = "message bot-message";
+      botMessageElement.textContent = generateBotResponse(userMessage);
+      chatbox.appendChild(botMessageElement);
+      
+      // Scroll to the bottom of the chatbox
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+    
+    function generateBotResponse(userMessage) {
+      // Add your bot's logic here to generate appropriate responses based on user input
+      // You can use conditionals, switch statements, or call an API to retrieve responses
+      
+      // For this example, we'll just return a generic response
+      return "Thank you for your message!";
+    }
+  </script>
+</head>
+<body>
+  <h1>Chatbot</h1>
+  
+  <div class="chatbox" id="chatbox">
+    <div class="message bot-message">Welcome! How can I assist you?</div>
+  </div>
+  
+  <input type="text" class="user-input" id="userInput" placeholder="Type your message..." onkeydown="if (event.keyCode === 13) { sendMessage(); }">
+  
+  <button class="send-button" onclick="sendMessage()">Send</button>
+</body>
+</html>
+
+{% endblock body %}
